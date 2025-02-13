@@ -6,3 +6,4 @@ reports
 .vscode/launch.json
 pact/
 screenshots/
+dist/
