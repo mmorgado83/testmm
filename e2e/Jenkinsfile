@@ -1,0 +1,137 @@
+pipeline {
+    agent any
+    environment {
+        // Ensure the BlazeMeter API token and other relevant paths are set in the environment variables
+        BLAZEMETER_RC_PATH = 'C:\\Users\\mmorga03\\.bzt-rc'  // Path to your .bzt-rc file (adjust for your Jenkins environment)
+        BLAZEMETER_BIN_PATH = 'C:\\Users\\mmorga03\\.bzt\\jmeter-taurus\\5.5\\bin'  // Adjust to where 'bzt' is installed on Jenkins agent
+        SONARQUBE_SCANNER_HOME = '/opt/sonar-scanner'  // Adjust if SonarQube Scanner is installed in a different location
+    }
+    stages {
+        stage('Checkout SCM') {
+            steps {
+                checkout scm
+            }
+        }
+
+        stage('Setup BlazeMeter Config') {
+            steps {
+                script {
+                    echo "Setting up BlazeMeter config and environment..."
+                    // Ensure the .bzt-rc file is copied to the correct location
+                    bat "copy C:\\Users\\mmorga03\\.bzt-rc ${env.WORKSPACE}\\.bzt-rc"
+
+                    // Check if BlazeMeter (bzt) is installed, and install it if not
+                    def bztCheck = bat(script: 'where bzt', returnStatus: true)
+                    if (bztCheck != 0) {
+                        echo 'BlazeMeter (bzt) not found, installing...'
+                        bat 'pip install bzt'
+                    } else {
+                        echo 'BlazeMeter (bzt) is already installed.'
+                    }
+                }
+            }
+        }
+
+        stage('Run Performance Tests') {
+            steps {
+                script {
+                    echo "Running performance tests with BlazeMeter..."
+                    
+                    // Ensure BlazeMeter CLI is accessible
+                    bat "set PATH=%PATH%;${BLAZEMETER_BIN_PATH}"
+
+                    // Run BlazeMeter performance tests with the provided config
+                    dir('e2e') {
+                        bat "bzt blazemeter-config.yml 1>blazeMeterLogs.txt 2>&1 || echo 'BlazeMeter execution failed'"
+                    }
+                }
+            }
+        }
+
+        // Caching dependencies: Check if node_modules are cached
+        stage('Install Dependencies') {
+            steps {
+                script {
+                    dir('e2e') {
+                        // Check if node_modules already exists in the workspace
+                        if (fileExists('node_modules')) {
+                            echo 'node_modules exists, skipping npm ci...'
+                        } else {
+                            echo 'Installing dependencies...'
+                            bat 'npm ci'
+                            stash name: 'node_modules', includes: 'node_modules/**'
+                        }
+                    }
+                }
+            }
+        }
+        
+        stage('Run Production Tests') {
+            steps {
+                script {
+                    // Change the directory to 'e2e' before running the batch file
+                    dir('e2e') {
+                        bat '.\\run_tests.bat production dev'
+                    }
+                }
+            }
+        }
+
+        // SonarQube analysis stage
+        stage('SonarQube Analysis') {
+            steps {
+                script {
+                    echo "Running SonarQube analysis..."
+
+                    // Run SonarQube analysis using the installed SonarQube scanner
+                    withSonarQubeEnv('MySonarQubeServer') {  // Replace 'MySonarQubeServer' with your actual SonarQube server name configured in Jenkins
+                        dir('e2e') {
+                            bat 'npm run sonar:scan'  // Adjust based on your project setup (this should run the SonarQube scan)
+                        }
+                    }
+                }
+            }
+        }
+
+
+        stage('Generate Reports') {
+            steps {
+                script {
+                    echo "Generating reports..."
+                }
+                dir('e2e') {
+                    bat 'npm run postcucumber'
+                }
+            }
+        }
+
+
+        stage('Archive Results') {
+            steps {
+                script {
+                    echo "Archiving reports..."
+                }
+                // Archive reports and BlazeMeter logs for later inspection
+                archiveArtifacts artifacts: 'e2e/reports/**/*, e2e/blazeMeterLogs.txt', allowEmptyArchive: true
+            }
+        }
+    }
+
+    post {
+        always {
+            script {
+                echo "Pipeline finished"
+            }
+        }
+        success {
+            script {
+                echo "Tests executed successfully!"
+            }
+        }
+        failure {
+            script {
+                echo "Tests failed! Check logs and reports for details."
+            }
+        }
+    }
+}

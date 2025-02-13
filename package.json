@@ -1,0 +1,42 @@
+{
+  "name": "dcx-demo-qa-framework",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "cucumber-js test --tags @UI",
+    "test:e2e": "cd e2e && .run_tests.bat localhost @ui",
+    "test:api_e2e": "cd api_e2e && .run_tests.bat @api",
+    "test:all": "npm run test:e2e && npm run test:api_e2e",
+    "test:current": "cucumber-js test --tags @current",
+    "test:consumer": "cross-env CONTRACT=yes cucumber-js test --tags @contract",
+    "test:provider": "mocha --exit --timeout 30000 ./src/features/Contract_Consumer_Driven/providerSide/provider.pact.spec.js",
+    "publish:consumer:contract": "ts-node ./publish.ts",
+    "can-i-deploy:consumer": "dotenv -- npx pact-broker can-i-deploy --pacticipant 'Demo Consumer' --version 1.0.0-someconsumersha --to-environment production",
+    "can-i-deploy:provider": "dotenv -- npx pact-broker can-i-deploy --pacticipant 'Demo Provider' --version 1.0.0-someprovidersha --to-environment production",
+    "record-deployment:consumer": "dotenv -- npx pact-broker record-deployment --pacticipant 'Demo Consumer' --version 1.0.0-someconsumersha --environment production",
+    "record-deployment:provider": "dotenv -- npx pact-broker record-deployment --pacticipant 'Demo Provider' --version 1.0.0-someprovidersha --environment production",
+    "test:percy": "dotenv -- npx percy snapshot ./src/features/Visualisation/Percy/snapshot.yml",
+    "uploadTests": "dcx -- uploadXrayTestCases --projectKey DCXDEMO --featurePath src/features",
+    "uploadResults": "dcx -- uploadXrayResults --projectKey DCXDEMO",
+    "lint": "eslint ."
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@cucumber/cucumber": "^9.5.1",
+    "@dcx/qa-taf-core": "^1.56.95",
+    "@percy/cli": "1.30.4",
+    "@types/node": "^20.8.0",
+    "cors": "^2.8.5",
+    "cross-env": "^7.0.3",
+    "dotenv": "^16.3.1",
+    "dotenv-cli": "3.0.0",
+    "mocha": "^10.0.0",
+    "puppeteer": "^23.10.4",
+    "ts-node": "^10.9.1"
+  },
+  "devDependencies": {
+    "lighthouse": "^12.3.0"
+  }
+}

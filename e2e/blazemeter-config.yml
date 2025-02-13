@@ -1,0 +1,10 @@
+execution:
+  - concurrency: 3  # Number of virtual users
+    ramp-up: 30s    # Ramp-up time
+    hold-for: 1m    # Test duration
+    scenario: main_scenario
+scenarios:
+  main_scenario:
+    requests:
+      - url: "https://jsonplaceholder.typicode.com/posts"
+        method: GET

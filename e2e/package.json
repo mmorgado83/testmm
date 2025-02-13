@@ -1,0 +1,42 @@
+{
+  "name": "e2e",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "npm run cucumber",
+    "precucumber": "rimraf reports && mkdir reports && echo {} > reports/report.json",
+    "transpile": "rimraf dist && babel --extensions .ts --out-dir dist src",
+    "cucumber": "npm run transpile && cucumber-js",
+    "cucumber:localhost": "npm run transpile && cucumber-js",
+    "cucumber:production": "npm run transpile && cucumber-js",
+    "postcucumber": "cross-env COMMON_CONFIG_FILE=env/common.env ts-node ./src/reporter/cucumber-report.ts"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@babel/cli": "^7.25.6",
+    "@babel/core": "^7.25.2",
+    "@babel/preset-env": "^7.25.4",
+    "@babel/preset-react": "^7.24.7",
+    "@babel/preset-typescript": "^7.24.7",
+    "@cucumber/cucumber": "^10.9.0",
+    "@playwright/test": "^1.46.1",
+    "@types/body-parser": "^1.19.5",
+    "@types/cucumber-html-reporter": "^5.0.1",
+    "@types/faker": "^5.5.3",
+    "@types/node": "^22.5.1",
+    "axe-html-reporter": "^2.2.11",
+    "axe-playwright": "^2.0.3",
+    "cross-env": "^7.0.3",
+    "dotenv": "^16.4.5",
+    "faker": "^5.5.3",
+    "playwright": "^1.46.1",
+    "rimraf": "^6.0.1",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.5.4"
+  },
+  "dependencies": {
+    "cucumber-html-reporter": "^6.0.0"
+  }
+}
