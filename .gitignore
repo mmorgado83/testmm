@@ -7,4 +7,4 @@ reports
 pact/
 screenshots/
 dist/
-/api_e2e/dist/
+api_e2e/dist/
