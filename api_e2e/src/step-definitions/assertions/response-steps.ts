@@ -81,3 +81,19 @@ Then(
 
     }
 )
+
+Then(
+    /^the response json contains a data payload$/,
+    async function(this: ScenarioWorld) {
+        const { globalAPIResponseVariables } = this;
+
+        console.log("Verifying that the response json contains a data payload");
+
+        const response = await globalAPIResponseVariables.response.json();
+
+        // Verifica se a resposta é um array
+        expect(Array.isArray(response)).toBeTruthy();
+        // Opcional: Verifica se o array não está vazio
+        expect(response.length).toBeGreaterThan(0);
+    }
+);

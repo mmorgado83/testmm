@@ -106,3 +106,29 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
     return _ref4.apply(this, arguments);
   };
 }());
+(0, _cucumber.Then)(/^the response json contains a data payload$/, /*#__PURE__*/function () {
+  var _ref5 = _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee5() {
+    var globalAPIResponseVariables, response;
+    return _regeneratorRuntime().wrap(function _callee5$(_context5) {
+      while (1) switch (_context5.prev = _context5.next) {
+        case 0:
+          globalAPIResponseVariables = this.globalAPIResponseVariables;
+          console.log("Verifying that the response json contains a data payload");
+          _context5.next = 4;
+          return globalAPIResponseVariables.response.json();
+        case 4:
+          response = _context5.sent;
+          // Verifica se a resposta é um array
+          (0, _test.expect)(Array.isArray(response)).toBeTruthy();
+          // Opcional: Verifica se o array não está vazio
+          (0, _test.expect)(response.length).toBeGreaterThan(0);
+        case 7:
+        case "end":
+          return _context5.stop();
+      }
+    }, _callee5, this);
+  }));
+  return function (_x10) {
+    return _ref5.apply(this, arguments);
+  };
+}());

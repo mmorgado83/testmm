@@ -6,6 +6,7 @@ Feature: As an API I can retrieve posts
     Given I retrieve "posts"
     And the response was successful
     Then the response status code is 200
+    And the response json contains a data payload
 
   @smoke
   @regression

@@ -1,16 +1,16 @@
-2025-01-27 11:22:45,372 INFO o.j.r.PluginManagerCMD: Command is: install-for-jmx
-2025-01-27 11:22:45,466 INFO o.j.r.JARSourceHTTP: Requesting https://jmeter-plugins.org/repo/?installID=windows_11-441f27c651c947ac54345502083c5f95-nongui
-2025-01-27 11:22:47,404 INFO o.j.r.PluginManager: Plugins Status: [jpgc-plugins-manager=1.10, jmeter-core=5.6.3, jmeter-ftp=5.6.3, jmeter-http=5.6.3, jmeter-jdbc=5.6.3, jmeter-jms=5.6.3, jmeter-junit=5.6.3, jmeter-java=5.6.3, jmeter-ldap=5.6.3, jmeter-mail=5.6.3, jmeter-mongodb=5.6.3, jmeter-native=5.6.3, jmeter-tcp=5.6.3, jmeter-components=5.6.3]
-2025-01-27 11:22:47,406 INFO o.j.r.PluginManagerCMD: Params line is: C:\Users\mmorga03\bzt-artifacts\2025-01-27_11-22-41.848540\modified_requests.jmx
-2025-01-27 11:22:47,686 INFO o.a.j.s.SaveService: Testplan (JMX) version: 2.2. Testlog (JTL) version: 2.2
-2025-01-27 11:22:47,697 INFO o.a.j.s.SaveService: Using SaveService properties version 5.0
-2025-01-27 11:22:47,701 INFO o.a.j.s.SaveService: Using SaveService properties file encoding UTF-8
-2025-01-27 11:22:47,749 INFO o.a.j.p.h.c.CacheManager: Will only cache the following methods: [GET]
-2025-01-27 11:22:47,752 INFO o.a.j.p.h.c.CookieManager: Settings: Delete null: true Check: true Allow variable: true Save: false Prefix: COOKIE_
-2025-01-27 11:22:47,791 INFO o.a.j.p.h.s.HTTPSamplerBase: Parser for text/html is org.apache.jmeter.protocol.http.parser.LagartoBasedHtmlParser
-2025-01-27 11:22:47,791 INFO o.a.j.p.h.s.HTTPSamplerBase: Parser for application/xhtml+xml is org.apache.jmeter.protocol.http.parser.LagartoBasedHtmlParser
-2025-01-27 11:22:47,791 INFO o.a.j.p.h.s.HTTPSamplerBase: Parser for application/xml is org.apache.jmeter.protocol.http.parser.LagartoBasedHtmlParser
-2025-01-27 11:22:47,791 INFO o.a.j.p.h.s.HTTPSamplerBase: Parser for text/xml is org.apache.jmeter.protocol.http.parser.LagartoBasedHtmlParser
-2025-01-27 11:22:47,791 INFO o.a.j.p.h.s.HTTPSamplerBase: Parser for text/vnd.wap.wml is org.apache.jmeter.protocol.http.parser.RegexpHTMLParser
-2025-01-27 11:22:47,792 INFO o.a.j.p.h.s.HTTPSamplerBase: Parser for text/css is org.apache.jmeter.protocol.http.parser.CssParser
-2025-01-27 11:22:47,891 INFO o.j.r.PluginManager: Finishing without changes
+2025-02-17 12:45:41,159 INFO o.j.r.PluginManagerCMD: Command is: install-for-jmx
+2025-02-17 12:45:41,220 INFO o.j.r.JARSourceHTTP: Requesting https://jmeter-plugins.org/repo/?installID=windows_11-ad7c6bb6fcc0d96e319931cf9ea58000-nongui
+2025-02-17 12:45:43,209 INFO o.j.r.PluginManager: Plugins Status: [jpgc-plugins-manager=1.10, jmeter-core=5.6.3, jmeter-ftp=5.6.3, jmeter-http=5.6.3, jmeter-jdbc=5.6.3, jmeter-jms=5.6.3, jmeter-junit=5.6.3, jmeter-java=5.6.3, jmeter-ldap=5.6.3, jmeter-mail=5.6.3, jmeter-mongodb=5.6.3, jmeter-native=5.6.3, jmeter-tcp=5.6.3, jmeter-components=5.6.3]
+2025-02-17 12:45:43,213 INFO o.j.r.PluginManagerCMD: Params line is: C:\Users\mmorga03\bzt-artifacts\2025-02-17_12-45-37.746029\modified_requests.jmx
+2025-02-17 12:45:43,574 INFO o.a.j.s.SaveService: Testplan (JMX) version: 2.2. Testlog (JTL) version: 2.2
+2025-02-17 12:45:43,585 INFO o.a.j.s.SaveService: Using SaveService properties version 5.0
+2025-02-17 12:45:43,589 INFO o.a.j.s.SaveService: Using SaveService properties file encoding UTF-8
+2025-02-17 12:45:43,677 INFO o.a.j.p.h.c.CacheManager: Will only cache the following methods: [GET]
+2025-02-17 12:45:43,680 INFO o.a.j.p.h.c.CookieManager: Settings: Delete null: true Check: true Allow variable: true Save: false Prefix: COOKIE_
+2025-02-17 12:45:43,720 INFO o.a.j.p.h.s.HTTPSamplerBase: Parser for text/html is org.apache.jmeter.protocol.http.parser.LagartoBasedHtmlParser
+2025-02-17 12:45:43,720 INFO o.a.j.p.h.s.HTTPSamplerBase: Parser for application/xhtml+xml is org.apache.jmeter.protocol.http.parser.LagartoBasedHtmlParser
+2025-02-17 12:45:43,720 INFO o.a.j.p.h.s.HTTPSamplerBase: Parser for application/xml is org.apache.jmeter.protocol.http.parser.LagartoBasedHtmlParser
+2025-02-17 12:45:43,720 INFO o.a.j.p.h.s.HTTPSamplerBase: Parser for text/xml is org.apache.jmeter.protocol.http.parser.LagartoBasedHtmlParser
+2025-02-17 12:45:43,720 INFO o.a.j.p.h.s.HTTPSamplerBase: Parser for text/vnd.wap.wml is org.apache.jmeter.protocol.http.parser.RegexpHTMLParser
+2025-02-17 12:45:43,720 INFO o.a.j.p.h.s.HTTPSamplerBase: Parser for text/css is org.apache.jmeter.protocol.http.parser.CssParser
+2025-02-17 12:45:43,808 INFO o.j.r.PluginManager: Finishing without changes
