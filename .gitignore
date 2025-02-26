@@ -6,5 +6,9 @@ reports
 .vscode/launch.json
 pact/
 screenshots/
-dist/
 api_e2e/dist/
+api_e2e/dist/env/
+api_e2e/dist/reporter/
+api_e2e/dist/step-definitions/assertions/
+api_e2e/dist/support/
+api_e2e/dist/tests/
